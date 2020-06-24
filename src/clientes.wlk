@@ -1,5 +1,11 @@
+import vendedores.*
 
-// ver si usar clases u objetos
-class ClienteInseguro {}
-class ClienteDetallista {}
-class ClienteHumanista {}
+object clienteInseguro {
+	method puedeSerAtendidoPor(vendedor) = vendedor.esVersatil() and vendedor.esFirme()
+}
+object clienteDetallista {
+	method puedeSerAtendidoPor(vendedor) = vendedor.totalCertificProd() >= 3
+}
+object clienteHumanista {
+	method puedeSerAtendidoPor(vendedor) = vendedor.esPersonaFisica()
+}

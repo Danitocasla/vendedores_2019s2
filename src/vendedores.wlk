@@ -3,14 +3,17 @@ import geografia.*
 class Vendedor {
 	var property certificaciones = []
 	
+	method agregarCer(certificacion) = certificaciones.add(certificacion)
 	method esVersatil() {
 		return certificaciones.size() >= 3 
-			and certificaciones.any({cer=>cer.sobreProductos()})
-				and certificaciones.any({cer=>not cer.sobreProductos()})
+			and certificaciones.any({cer=>cer.esSobreProducto()})
+				and self.esGenerico()
 	}
 	method totalPuntos() = certificaciones.sum({cer=>cer.puntos()})
 	method esFirme() = self.totalPuntos() >= 30
 	method esPersonaFisica() = true
+	method esGenerico() = certificaciones.any({cer=>not cer.esSobreProducto()})
+	method totalCertificProd() = certificaciones.filter({cer=>cer.esSobreProducto()}).size()
 }
 
 class VendedorFijo inherits Vendedor{
@@ -34,6 +37,7 @@ class Viajante inherits Vendedor{
 class ComercioCorresponsal inherits Vendedor{
 	var property sucursales = []
 	
+	method agregarSuc(sucursal) = sucursales.add(sucursal)
 	method puedeTrabajar(unaCiudad) = sucursales.any({
 		suc=>suc.ciudad() == unaCiudad
 	})
@@ -50,4 +54,6 @@ class Sucursal {
 class Certificacion {
 	var property puntos
 	var property sobreProductos
+	
+	method esSobreProducto() = sobreProductos
 }
