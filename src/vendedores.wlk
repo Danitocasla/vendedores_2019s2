@@ -26,6 +26,7 @@ class VendedorFijo inherits Vendedor{
 class Viajante inherits Vendedor{
 	var property provinciaHabilitada = []
 	
+	method agregarProv(provincia) = provinciaHabilitada.add(provincia)
 	method puedeTrabajar(unaCiudad) = provinciaHabilitada.any({
 		prov=>prov == unaCiudad.provincia()
 	})

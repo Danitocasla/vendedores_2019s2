@@ -1,0 +1,33 @@
+import vendedores.*
+import geografia.*
+
+describe "Test de Vendedores"{
+	const santaFe = new Provincia(poblacion=3000000)
+	const entreRios = new Provincia(poblacion = 2000000)
+	const cordoba = new Provincia(poblacion = 4500000)
+	const buenosAires = new Provincia(poblacion = 8000000)
+	const chivilcoy = new Ciudad(provincia = buenosAires)
+	const bragado = new Ciudad(provincia = buenosAires)
+	const zarate = new Ciudad(provincia = buenosAires)
+	const lobos = new Ciudad(provincia = buenosAires)
+	const pergamino = new Ciudad(provincia = buenosAires)
+	const rosario = new Ciudad(provincia = santaFe)
+	const rafaela = new Ciudad(provincia = santaFe)
+	const amstrong = new Ciudad(provincia = santaFe)
+	const sanFrancisco = new Ciudad(provincia = cordoba)
+	const diamante = new Ciudad(provincia = entreRios)
+	const certif1 = new Certificacion(puntos = 10, sobreProductos = false)
+	const certif2 = new Certificacion(puntos = 20, sobreProductos = true)
+	const certif3 = new Certificacion(puntos = 12, sobreProductos = false)
+	const certif4 = new Certificacion(puntos = 22, sobreProductos = true)
+	const certif5 = new Certificacion(puntos = 25, sobreProductos = true)
+	
+	
+
+// tests
+test "testX" {
+
+	assert.that(true)
+
+}	
+}
