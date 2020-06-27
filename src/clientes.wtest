@@ -1,6 +1,143 @@
+import vendedores.*
+import clientes.*
+import geografia.*
 
-test "testX" {
+describe "test de clientes"{
+	const santaFe = new Provincia(poblacion=3000000)
+	const entreRios = new Provincia(poblacion = 2000000)
+	const cordoba = new Provincia(poblacion = 4500000)
+	const buenosAires = new Provincia(poblacion = 8000000)
+	
+	const chivilcoy = new Ciudad(provincia = buenosAires)
+	const bragado = new Ciudad(provincia = buenosAires)
+	const zarate = new Ciudad(provincia = buenosAires)
+	const lobos = new Ciudad(provincia = buenosAires)
+	const pergamino = new Ciudad(provincia = buenosAires)
+	const rafaela = new Ciudad(provincia = santaFe)
+	const diamante = new Ciudad(provincia = entreRios)
+	
+	const certif1 = new Certificacion(puntos = 10, sobreProductos = false)
+	const certif2 = new Certificacion(puntos = 20, sobreProductos = true)
+	const certif3 = new Certificacion(puntos = 12, sobreProductos = false)
+	const certif4 = new Certificacion(puntos = 2, sobreProductos = true)
+	const certif5 = new Certificacion(puntos = 15, sobreProductos = true)
+	const certif6 = new Certificacion(puntos = 12, sobreProductos = true)
+	const certif7 = new Certificacion(puntos = 12, sobreProductos = false)
+	
+	const sucursal1 = new Sucursal(ciudad = chivilcoy)
+	const sucursal2 = new Sucursal(ciudad = bragado)
+	const sucursal3 = new Sucursal(ciudad = zarate)
+	const sucursal4 = new Sucursal(ciudad = lobos)
+	const sucursal5 = new Sucursal(ciudad = pergamino)
+		
+	const fijo1 = new VendedorFijo(ciudad = diamante)
+	const fijo2 = new VendedorFijo(ciudad = rafaela)
+	
+	const viajante1 = new Viajante()
+		
+	const comercio1 = new ComercioCorresponsal()
+	
+test "test cliente inseguro" {
+	fijo1.agregarCer(certif1)
+	fijo1.agregarCer(certif2)
+	fijo1.agregarCer(certif3)
+	fijo2.agregarCer(certif4)
+	viajante1.agregarCer(certif1)
+	viajante1.agregarCer(certif2)
+	viajante1.agregarCer(certif3)
+	viajante1.agregarCer(certif4)
+	viajante1.agregarCer(certif5)
+	comercio1.agregarCer(certif1)
+	comercio1.agregarCer(certif2)
+	comercio1.agregarCer(certif5)
+	comercio1.agregarCer(certif6)
+	comercio1.agregarCer(certif7)
+	
+	viajante1.agregarProv(santaFe)
+	viajante1.agregarProv(entreRios)
+	viajante1.agregarProv(buenosAires)
+	viajante1.agregarProv(cordoba)
+	
+	comercio1.agregarSuc(sucursal1)
+	comercio1.agregarSuc(sucursal2)
+	comercio1.agregarSuc(sucursal3)
+	comercio1.agregarSuc(sucursal4)
+	comercio1.agregarSuc(sucursal5)
+	
 
-	assert.that(true)
+	assert.that(clienteInseguro.puedeSerAtendidoPor(fijo1))
+	assert.notThat(clienteInseguro.puedeSerAtendidoPor(fijo2))
+	assert.that(clienteInseguro.puedeSerAtendidoPor(viajante1))
+	assert.that(clienteInseguro.puedeSerAtendidoPor(comercio1))
+
+}
+test "test cliente detallista" {
+	fijo1.agregarCer(certif1)
+	fijo1.agregarCer(certif2)
+	fijo1.agregarCer(certif3)
+	fijo2.agregarCer(certif4)
+	viajante1.agregarCer(certif1)
+	viajante1.agregarCer(certif2)
+	viajante1.agregarCer(certif3)
+	viajante1.agregarCer(certif4)
+	viajante1.agregarCer(certif5)
+	comercio1.agregarCer(certif1)
+	comercio1.agregarCer(certif2)
+	comercio1.agregarCer(certif5)
+	comercio1.agregarCer(certif6)
+	comercio1.agregarCer(certif7)
+	
+	viajante1.agregarProv(santaFe)
+	viajante1.agregarProv(entreRios)
+	viajante1.agregarProv(buenosAires)
+	viajante1.agregarProv(cordoba)
+	
+	comercio1.agregarSuc(sucursal1)
+	comercio1.agregarSuc(sucursal2)
+	comercio1.agregarSuc(sucursal3)
+	comercio1.agregarSuc(sucursal4)
+	comercio1.agregarSuc(sucursal5)
+	
+
+	assert.notThat(clienteDetallista.puedeSerAtendidoPor(fijo1))
+	assert.that(clienteDetallista.puedeSerAtendidoPor(viajante1))
+	assert.notThat(clienteDetallista.puedeSerAtendidoPor(fijo2))
+	assert.that(clienteDetallista.puedeSerAtendidoPor(comercio1))
+
+}
+test "test cliente humanista" {
+	fijo1.agregarCer(certif1)
+	fijo1.agregarCer(certif2)
+	fijo1.agregarCer(certif3)
+	fijo2.agregarCer(certif4)
+	viajante1.agregarCer(certif1)
+	viajante1.agregarCer(certif2)
+	viajante1.agregarCer(certif3)
+	viajante1.agregarCer(certif4)
+	viajante1.agregarCer(certif5)
+	comercio1.agregarCer(certif1)
+	comercio1.agregarCer(certif2)
+	comercio1.agregarCer(certif5)
+	comercio1.agregarCer(certif6)
+	comercio1.agregarCer(certif7)
+	
+	viajante1.agregarProv(santaFe)
+	viajante1.agregarProv(entreRios)
+	viajante1.agregarProv(buenosAires)
+	viajante1.agregarProv(cordoba)
+	
+	comercio1.agregarSuc(sucursal1)
+	comercio1.agregarSuc(sucursal2)
+	comercio1.agregarSuc(sucursal3)
+	comercio1.agregarSuc(sucursal4)
+	comercio1.agregarSuc(sucursal5)
+	
+
+	assert.that(clienteHumanista.puedeSerAtendidoPor(fijo1))
+	assert.that(clienteHumanista.puedeSerAtendidoPor(fijo2))
+	assert.that(clienteHumanista.puedeSerAtendidoPor(viajante1))
+	assert.notThat(clienteHumanista.puedeSerAtendidoPor(comercio1))
+
+}
 
 }

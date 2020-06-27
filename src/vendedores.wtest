@@ -19,15 +19,109 @@ describe "Test de Vendedores"{
 	const certif1 = new Certificacion(puntos = 10, sobreProductos = false)
 	const certif2 = new Certificacion(puntos = 20, sobreProductos = true)
 	const certif3 = new Certificacion(puntos = 12, sobreProductos = false)
-	const certif4 = new Certificacion(puntos = 22, sobreProductos = true)
-	const certif5 = new Certificacion(puntos = 25, sobreProductos = true)
+	const certif4 = new Certificacion(puntos = 2, sobreProductos = true)
+	const certif5 = new Certificacion(puntos = 15, sobreProductos = true)
+	const certif6 = new Certificacion(puntos = 12, sobreProductos = true)
+	const certif7 = new Certificacion(puntos = 12, sobreProductos = false)
+	const certif8 = new Certificacion(puntos = 5, sobreProductos = false)
+	const sucursal1 = new Sucursal(ciudad = chivilcoy)
+	const sucursal2 = new Sucursal(ciudad = bragado)
+	const sucursal3 = new Sucursal(ciudad = zarate)
+	const sucursal4 = new Sucursal(ciudad = lobos)
+	const sucursal5 = new Sucursal(ciudad = pergamino)
+	const sucursal6 = new Sucursal(ciudad = rosario)
+	const sucursal7 = new Sucursal(ciudad = amstrong)
+	const sucursal8 = new Sucursal(ciudad = sanFrancisco)
 	
+	const fijo1 = new VendedorFijo(ciudad = diamante)
+	const fijo2 = new VendedorFijo(ciudad = rafaela)
 	
+	const viajante1 = new Viajante()
+	const viajante2 = new Viajante()
+	const viajante3 = new Viajante()
+	
+	const comercio1 = new ComercioCorresponsal()
+	const comercio2 = new ComercioCorresponsal()
 
 // tests
-test "testX" {
-
-	assert.that(true)
-
-}	
+test "test vendedores fijos" {
+	fijo1.agregarCer(certif1)
+	fijo1.agregarCer(certif2)
+	fijo1.agregarCer(certif3)
+	fijo2.agregarCer(certif4)
+	
+	assert.notThat(fijo1.puedeTrabajar(rafaela))
+	assert.that(fijo1.puedeTrabajar(diamante))
+	assert.that(fijo2.puedeTrabajar(rafaela))
+	assert.notThat(fijo2.esInfluyente())
+	assert.that(fijo1.esGenerico())
+	assert.that(fijo1.esVersatil())
+	assert.equals(1, fijo2.totalCertificProd())
+	assert.that(fijo1.esFirme())
+	assert.notThat(fijo2.esFirme())
+}
+test "test vendedores viajantes"{
+	viajante1.agregarCer(certif1)
+	viajante1.agregarCer(certif2)
+	viajante1.agregarCer(certif3)
+	viajante1.agregarCer(certif4)
+	viajante1.agregarCer(certif5)
+	viajante2.agregarCer(certif4)
+	viajante2.agregarCer(certif5)
+	viajante2.agregarCer(certif6)
+	viajante3.agregarCer(certif6)
+	viajante3.agregarCer(certif7)
+	viajante3.agregarCer(certif8)
+	
+	viajante1.agregarProv(santaFe)
+	viajante1.agregarProv(entreRios)
+	viajante1.agregarProv(buenosAires)
+	viajante1.agregarProv(cordoba)
+	viajante2.agregarProv(santaFe)
+	viajante2.agregarProv(entreRios)
+	viajante3.agregarProv(buenosAires)
+	viajante3.agregarProv(cordoba)
+	
+	assert.that(viajante1.esFirme())
+	assert.notThat(viajante2.esFirme())
+	assert.notThat(viajante3.esFirme())
+	assert.that(viajante1.esGenerico())
+	assert.notThat(viajante2.esGenerico())
+	assert.that(viajante3.esGenerico())
+	assert.that(viajante1.puedeTrabajar(rafaela))
+	assert.that(viajante2.puedeTrabajar(diamante))
+	assert.notThat(viajante3.puedeTrabajar(rafaela))
+	assert.that(viajante1.esInfluyente())
+	assert.notThat(viajante2.esInfluyente())
+	assert.that(viajante3.esInfluyente())
+}
+test "test comercio corresponsal"{
+	comercio1.agregarCer(certif1)
+	comercio1.agregarCer(certif2)
+	comercio1.agregarCer(certif5)
+	comercio1.agregarCer(certif6)
+	comercio1.agregarCer(certif7)
+	comercio2.agregarCer(certif3)
+	comercio2.agregarCer(certif4)
+	comercio2.agregarCer(certif8)
+	
+	comercio1.agregarSuc(sucursal1)
+	comercio1.agregarSuc(sucursal2)
+	comercio1.agregarSuc(sucursal3)
+	comercio1.agregarSuc(sucursal4)
+	comercio1.agregarSuc(sucursal5)
+	comercio2.agregarSuc(sucursal6)
+	comercio2.agregarSuc(sucursal7)
+	comercio2.agregarSuc(sucursal8)	
+	
+	assert.that(comercio1.puedeTrabajar(pergamino))
+	assert.notThat(comercio1.puedeTrabajar(rafaela))
+	assert.that(comercio1.esFirme())
+	assert.that(comercio1.esVersatil())
+	assert.that(comercio2.puedeTrabajar(rosario))
+	assert.notThat(comercio2.puedeTrabajar(zarate))
+	assert.that(comercio1.esInfluyente())
+	assert.notThat(comercio2.esInfluyente())
+}
+	
 }
