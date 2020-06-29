@@ -38,6 +38,7 @@ describe "test de clientes"{
 	const comercio1 = new ComercioCorresponsal()
 	
 test "test cliente inseguro" {
+	// configuracion de vendedores
 	fijo1.agregarCer(certif1)
 	fijo1.agregarCer(certif2)
 	fijo1.agregarCer(certif3)
@@ -64,7 +65,7 @@ test "test cliente inseguro" {
 	comercio1.agregarSuc(sucursal4)
 	comercio1.agregarSuc(sucursal5)
 	
-
+	//asserts
 	assert.that(clienteInseguro.puedeSerAtendidoPor(fijo1))
 	assert.notThat(clienteInseguro.puedeSerAtendidoPor(fijo2))
 	assert.that(clienteInseguro.puedeSerAtendidoPor(viajante1))
@@ -72,6 +73,7 @@ test "test cliente inseguro" {
 
 }
 test "test cliente detallista" {
+	// configuracion de vendedores
 	fijo1.agregarCer(certif1)
 	fijo1.agregarCer(certif2)
 	fijo1.agregarCer(certif3)
@@ -98,7 +100,7 @@ test "test cliente detallista" {
 	comercio1.agregarSuc(sucursal4)
 	comercio1.agregarSuc(sucursal5)
 	
-
+	//asserts
 	assert.notThat(clienteDetallista.puedeSerAtendidoPor(fijo1))
 	assert.that(clienteDetallista.puedeSerAtendidoPor(viajante1))
 	assert.notThat(clienteDetallista.puedeSerAtendidoPor(fijo2))
@@ -106,6 +108,7 @@ test "test cliente detallista" {
 
 }
 test "test cliente humanista" {
+	// configuracion de vendedores
 	fijo1.agregarCer(certif1)
 	fijo1.agregarCer(certif2)
 	fijo1.agregarCer(certif3)
@@ -132,7 +135,7 @@ test "test cliente humanista" {
 	comercio1.agregarSuc(sucursal4)
 	comercio1.agregarSuc(sucursal5)
 	
-
+	//asserts
 	assert.that(clienteHumanista.puedeSerAtendidoPor(fijo1))
 	assert.that(clienteHumanista.puedeSerAtendidoPor(fijo2))
 	assert.that(clienteHumanista.puedeSerAtendidoPor(viajante1))

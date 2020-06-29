@@ -14,12 +14,23 @@ class Vendedor {
 	method esPersonaFisica() = true
 	method esGenerico() = certificaciones.any({cer=>not cer.esSobreProducto()})
 	method totalCertificProd() = certificaciones.filter({cer=>cer.esSobreProducto()}).size()
+	method puedeTrabajar(unaCiudad)   // method abstracto
+	
+	method afinidad(centro) {
+		if (self.esPersonaFisica()){
+			return self.puedeTrabajar(centro.ciudad())
+		}
+		else{
+			return self.puedeTrabajar(centro.ciudad()) 
+				and not centro.puedeCubrir(centro.ciudad())
+		}
+	}
 }
 
 class VendedorFijo inherits Vendedor{
 	var property ciudad
 	
-	method puedeTrabajar(unaCiudad) = ciudad == unaCiudad
+	override method puedeTrabajar(unaCiudad) = ciudad == unaCiudad
 	method esInfluyente() = false
 }
 
@@ -27,7 +38,7 @@ class Viajante inherits Vendedor{
 	var property provinciaHabilitada = []
 	
 	method agregarProv(provincia) = provinciaHabilitada.add(provincia)
-	method puedeTrabajar(unaCiudad) = provinciaHabilitada.any({
+	override method puedeTrabajar(unaCiudad) = provinciaHabilitada.any({
 		prov=>prov == unaCiudad.provincia()
 	})
 	method esInfluyente() = provinciaHabilitada.sum({
@@ -39,7 +50,7 @@ class ComercioCorresponsal inherits Vendedor{
 	var property sucursales = []
 	
 	method agregarSuc(sucursal) = sucursales.add(sucursal)
-	method puedeTrabajar(unaCiudad) = sucursales.any({
+	override method puedeTrabajar(unaCiudad) = sucursales.any({
 		suc=>suc.ciudad() == unaCiudad
 	})
 	method esInfluyente() {

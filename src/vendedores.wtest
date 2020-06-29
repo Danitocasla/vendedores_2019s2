@@ -45,11 +45,13 @@ describe "Test de Vendedores"{
 
 // tests
 test "test vendedores fijos" {
+	// configuracion de vendedores
 	fijo1.agregarCer(certif1)
 	fijo1.agregarCer(certif2)
 	fijo1.agregarCer(certif3)
 	fijo2.agregarCer(certif4)
 	
+	//asserts
 	assert.notThat(fijo1.puedeTrabajar(rafaela))
 	assert.that(fijo1.puedeTrabajar(diamante))
 	assert.that(fijo2.puedeTrabajar(rafaela))
@@ -61,6 +63,7 @@ test "test vendedores fijos" {
 	assert.notThat(fijo2.esFirme())
 }
 test "test vendedores viajantes"{
+	// configuracion de vendedores
 	viajante1.agregarCer(certif1)
 	viajante1.agregarCer(certif2)
 	viajante1.agregarCer(certif3)
@@ -82,6 +85,7 @@ test "test vendedores viajantes"{
 	viajante3.agregarProv(buenosAires)
 	viajante3.agregarProv(cordoba)
 	
+	//asserts
 	assert.that(viajante1.esFirme())
 	assert.notThat(viajante2.esFirme())
 	assert.notThat(viajante3.esFirme())
@@ -96,6 +100,7 @@ test "test vendedores viajantes"{
 	assert.that(viajante3.esInfluyente())
 }
 test "test comercio corresponsal"{
+	// configuracion de vendedores
 	comercio1.agregarCer(certif1)
 	comercio1.agregarCer(certif2)
 	comercio1.agregarCer(certif5)
@@ -114,6 +119,7 @@ test "test comercio corresponsal"{
 	comercio2.agregarSuc(sucursal7)
 	comercio2.agregarSuc(sucursal8)	
 	
+	//asserts
 	assert.that(comercio1.puedeTrabajar(pergamino))
 	assert.notThat(comercio1.puedeTrabajar(rafaela))
 	assert.that(comercio1.esFirme())
