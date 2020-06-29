@@ -66,7 +66,6 @@ test "test del centro" {
 	comercio1.agregarCer(certif6)
 	comercio1.agregarCer(certif7)
 	
-	viajante1.agregarProv(santaFe)
 	viajante1.agregarProv(entreRios)
 	viajante1.agregarProv(buenosAires)
 	viajante1.agregarProv(cordoba)
@@ -93,9 +92,13 @@ test "test del centro" {
 	// asserts
 	assert.throwsExceptionWithMessage("Ya se encuentra en la lista", {=>centroCordoba.agregarA(fijo1)})
 	assert.equals(comercio1, centroCordoba.vendedorEstrella())
-	assert.that(centroCordoba.puedeCubrir(amstrong))
-	assert.notThat(centroCordoba.puedeCubrir(diamante))
-	assert.equals(#{fijo1,},centroCordoba.vendedoresGenericos())
+	assert.that(centroCordoba.puedeCubrir(sanFrancisco))
+	assert.notThat(centroCordoba.puedeCubrir(rosario))
+	assert.equals(#{fijo1,viajante1,comercio1},centroCordoba.vendedoresGenericos().asSet())
+	assert.that(centroCordoba.esRobusto())
+	centroCordoba.repartir(certif8)
+	assert.equals(#{fijo1,fijo2,viajante1,comercio1},centroCordoba.vendedoresGenericos().asSet())
+	assert.that(centroCordoba.esCandidato(viajante3))
 }
 
 }

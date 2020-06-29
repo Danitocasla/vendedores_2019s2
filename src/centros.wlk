@@ -12,11 +12,13 @@ class Centros {
 		self.error("Ya se encuentra en la lista")
 	}
 		else { vendedores.add(vendedor) }
-	method vendedorEstrella() = vendedores.max({ven=>ven.totalPuntos()})
+	method vendedorEstrella() {
+		return if (vendedores.isEmpty()) {self.error("No hay vendedores en el centro")} else {vendedores.max({ven=>ven.totalPuntos()})}
+			}
 	method puedeCubrir(unaCiudad) = vendedores.any({ven=>ven.puedeTrabajar(unaCiudad)})
 	method vendedoresGenericos() = vendedores.filter({ven=>ven.esGenerico()})
 	method esRobusto() = vendedores.filter({ven=>ven.esFirme()}).size() >= 3
-	method repartir(certificacion) = vendedores.map({ven=>ven.agregarCer(certificacion)})
+	method repartir(certificacion) { return vendedores.forEach({ven=>ven.agregarCer(certificacion)}) }
 	
 	method esCandidato(vendedor) = vendedor.esVersatil() and vendedor.afinidad(self)
 }
