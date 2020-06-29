@@ -13,7 +13,8 @@ class Centros {
 	}
 		else { vendedores.add(vendedor) }
 	method vendedorEstrella() {
-		return if (vendedores.isEmpty()) {self.error("No hay vendedores en el centro")} else {vendedores.max({ven=>ven.totalPuntos()})}
+		return if (vendedores.isEmpty()) {self.error("No hay vendedores en el centro")} 
+					else {vendedores.max({ven=>ven.totalPuntos()})}
 			}
 	method puedeCubrir(unaCiudad) = vendedores.any({ven=>ven.puedeTrabajar(unaCiudad)})
 	method vendedoresGenericos() = vendedores.filter({ven=>ven.esGenerico()})
