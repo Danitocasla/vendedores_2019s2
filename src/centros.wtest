@@ -15,7 +15,6 @@ describe "test para centros" {
 	const pergamino = new Ciudad(provincia = buenosAires)
 	const rosario = new Ciudad(provincia = santaFe)
 	const rafaela = new Ciudad(provincia = santaFe)
-	const amstrong = new Ciudad(provincia = santaFe)
 	const sanFrancisco = new Ciudad(provincia = cordoba)
 	const diamante = new Ciudad(provincia = entreRios)
 	
@@ -33,19 +32,14 @@ describe "test para centros" {
 	const sucursal3 = new Sucursal(ciudad = zarate)
 	const sucursal4 = new Sucursal(ciudad = lobos)
 	const sucursal5 = new Sucursal(ciudad = pergamino)
-	const sucursal6 = new Sucursal(ciudad = rosario)
-	const sucursal7 = new Sucursal(ciudad = amstrong)
-	const sucursal8 = new Sucursal(ciudad = sanFrancisco)
-	
+		
 	const fijo1 = new VendedorFijo(ciudad = diamante)
 	const fijo2 = new VendedorFijo(ciudad = rafaela)
 	
 	const viajante1 = new Viajante()
-	const viajante2 = new Viajante()
 	const viajante3 = new Viajante()
 	
 	const comercio1 = new ComercioCorresponsal()
-	const comercio2 = new ComercioCorresponsal()
 
 	const centroCordoba = new Centros(ciudad = sanFrancisco)
 
